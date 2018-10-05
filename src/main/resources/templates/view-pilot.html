@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+	<head>
+		<title>Detail Pilot</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	</head>
+	<body>
+		<h4 th:text="|Pilot License Nummber : ${pilot.licenseNumber}|"></h4>
+		<h4 th:text="|Name : ${pilot.name}|"></h4>
+		<h4 th:text="|Fly Hour : ${pilot.flyHour}|"></h4>
+		<br>
+		<div th:if="${not #lists.isEmpty(flightList)}">
+    		<h4>Daftar Penerbangan</h4>
+    		<table class="table table-bordered">
+        		<tr>
+            		<th>Flight Number</th>
+            		<th>Origin</th>
+            		<th>Destination</th>
+            		<th>Time</th>
+		        </tr>
+		        <tr th:each="flight : ${flightList}">
+		            <td th:text="${flight.flightNumber}"></td>
+		            <td th:text="${flight.origin}"></td>
+		            <td th:text="${flight.destination}"></td>
+		            <td th:text="${#dates.format(flight.time, 'dd-MM-yyyy')}"></td>
+		        </tr>
+		    </table>
+		</div>
+		<div th:if="${#lists.isEmpty(flightList)}">
+			<h4 style="color: red">Belum Ada Penerbangan</h4>
+		</div>
+		<br>
+		<h4><a th:href="@{/flight/add/{licenseNumber}(licenseNumber=${pilot.licenseNumber})}" class="btn btn-primary">Add Flight</a></h4>
+		<h3><a th:href="@{/}" class="btn btn-primary">Home</a></h3>
+	</body>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<title>Home</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+	<h2>Hello!</h2>
+	
+	<h3>Tambah Pilot</h3>
+	<td><a th:href="@{/pilot/add}" class="btn btn-primary" style="margin-left: 5px;">Add Pilot</a></td>
+	
+	<h3>Cari Pilot Berdasarkan Nomor Lisensi</h3>
+	<form th:action="@{/pilot/view}" method="GET">
+		<label>License Number:</label> <br>
+		<input type="text" name="licenseNumber" />
+		<button type="submit" class="btn btn-success">cari</button>
+	</form>
+	<h3>Cari Penerbangan Berdasarkan Nomor Penerbangan</h3>
+	<form th:action="@{/flight/view}" method="GET">
+		<label>Flight Number:</label> <br>
+		<input type="text" name="flightNumber" />
+		<button type="submit" class="btn btn-success">cari</button>
+	</form>
+	<br><br>
+	<div style="text-align: left; vertical-align: middle; margin-left: 5px;">
+		<a type="button" th:href="@{/pilot/viewall}" class="btn btn-info">Daftar Pilot</a>
+		<a th:href="@{/flight/viewall}" class="btn btn-info">Daftar Penerbangan</a>
+	</div>
+</body>
+</html>

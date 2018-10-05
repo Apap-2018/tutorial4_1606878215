@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<title>Daftar Flight</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+	<div th:if="${not #lists.isEmpty(flightList)}">
+		<h3>Daftar flight</h3>
+		<table class="table table-bordered">
+      		<tr>
+          		<th>Flight Number</th>
+          		<th>Origin</th>
+          		<th>Destination</th>
+          		<th>Time</th>
+          		<th>Operation</th>
+	        </tr>
+	        <tr th:each="flight : ${flightList}">
+	            <td th:text="${flight.id}"></td>
+	            <td th:text="${flight.origin}"></td>
+	            <td th:text="${flight.destination}"></td>
+	            <td th:text="${#dates.format(flight.time, 'dd-MM-yyyy')}"></td>
+	            <td style="vertical-align: middle;">
+	            	<a th:href="@{/flight/delete/{id}(id=${flight.id})}" class="btn btn-danger" style="margin-right: 5px;">Delete</a>
+	            	<a th:href="@{/}" class="btn btn-success">Update</a>
+	            </td>
+	        </tr>
+	    </table>
+	</div>
+	<div th:if="${#lists.isEmpty(flightList)}">
+		<h4 style="color: red">Tidak Ada Penerbangan</h4>
+	</div>
+	<h3><a th:href="@{/}" class="btn btn-primary">Home</a></h3>
+  		
+</body>
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<title>Daftar Pilot</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+	<div th:if="${not #lists.isEmpty(pilotList)}">
+		<h3>Daftar Pilot</h3>
+  		<table class="table table-bordered">
+      		<tr>
+          		<th>License Number</th>
+          		<th>Name</th>
+          		<th>Fly Hour</th>
+          		<th>Operation</th>
+	        </tr>
+	        <tr th:each="pilot : ${pilotList}">
+	            <td th:text="${pilot.licenseNumber}"></td>
+	            <td th:text="${pilot.name}"></td>
+	            <td th:text="${pilot.flyHour}"></td>
+	            <td style="vertical-align: middle;">
+	            	<a th:href="@{/pilot/delete/{id}(id=${pilot.id})}" class="btn btn-danger" style="margin-right: 5px;">Delete</a>
+	            	<a th:href="@{/}" class="btn btn-success">Update</a>
+	            </td>
+	        </tr>
+	    </table>
+	</div>
+	<div th:if="${#lists.isEmpty(pilotList)}">
+		<h4 style="color: red">Tidak Ada Pilot</h4>
+	</div>
+	<h3><a th:href="@{/}" class="btn btn-primary">Home</a></h3>
+</body>
+</html>
