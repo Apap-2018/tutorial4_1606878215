@@ -62,4 +62,22 @@ public class PilotController {
 		pilotService.deletePilot(id);
 		return "delete";
 	}
+	
+	@RequestMapping("/pilot/update")
+	public String updatePilotSubmit(@RequestParam("licenseNumber") String licenseNumber, Model model) {
+		try {
+			PilotModel archive = pilotService.getPilotDetailByLicenseNumber(licenseNumber);	
+			model.addAttribute("pilot", archive);
+			model.addAttribute("flightList", archive.getPilotFlight());
+			return "view-pilot";
+		} catch (NullPointerException e) {
+			return "error";
+		}
+	}
+	
+	@RequestMapping(value = "/pilot/update/{licenseNumber}", method = RequestMethod.GET)
+	private String updatePilot(@PathVariable(value = "licenseNumber") String licenseNumber, Model model) {
+		model.addAttribute("licenseNumber", licenseNumber);
+		return "updatePilot";
+	}
 }
