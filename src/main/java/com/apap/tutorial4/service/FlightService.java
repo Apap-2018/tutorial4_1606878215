@@ -1,7 +1,6 @@
 package com.apap.tutorial4.service;
 
 import java.util.List;
-
 import com.apap.tutorial4.model.FlightModel;
 
 public interface FlightService {
@@ -9,4 +8,5 @@ public interface FlightService {
 	List<FlightModel> getFlightList();
 	void deleteFlight(long id);
 	void addFlight(FlightModel flight);
+	void saveFlight(FlightModel flight);
 }

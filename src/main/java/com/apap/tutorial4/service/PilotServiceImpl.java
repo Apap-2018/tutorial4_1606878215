@@ -35,5 +35,11 @@ public class PilotServiceImpl implements PilotService {
 		pilotDB.deleteById(id);
 		
 	}
+
+	@Override
+	public void savePilot(PilotModel pilot) {
+		pilotDB.save(pilot);
+		
+	}
 	
 }

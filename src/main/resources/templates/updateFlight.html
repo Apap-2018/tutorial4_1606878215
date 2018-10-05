@@ -11,16 +11,19 @@
 <body>
 	<h2>Hello!</h2>
 	
-	<h3>Update Pilot</h3>
-	<form th:action="@{/pilot/update}" method="POST">
-		License Number : <br>
-		<input type="text" name="licenseNumber" th:value="${licenseNumber}" style="background-color: grey;" readonly/>
+	<h3>Update Flight</h3>
+	<form th:action="@{/flight/update}" method="POST">
+		Flight Number : <br>
+		<input type="text" name="newFlightNumber" th:value="${flightNumber}" style="background-color: grey;" readonly />
 		<br>
-		Name : <br>
-		<input type="text" name="newName" />
+		Origin : <br>
+		<input type="text" name="newOrigin" />
 		<br>
-		Fly Hour : <br>
-		<input type="number" name="newFlyHour" />
+		Destination : <br>
+		<input type="text" name="newDestination" />
+		<br>
+		Time : <br>
+		<input type="date" name="newTime" />
 		<br><br>
 		<button type="submit">Submit</button>
 	</form>

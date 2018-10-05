@@ -35,4 +35,10 @@ public class FlightServiceImpl implements FlightService {
 		flightDB.deleteById(id);
 		
 	}
+
+	@Override
+	public void saveFlight(FlightModel flight) {
+		flightDB.save(flight);
+		
+	}
 }

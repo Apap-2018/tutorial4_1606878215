@@ -64,15 +64,12 @@ public class PilotController {
 	}
 	
 	@RequestMapping("/pilot/update")
-	public String updatePilotSubmit(@RequestParam("licenseNumber") String licenseNumber, Model model) {
-		try {
-			PilotModel archive = pilotService.getPilotDetailByLicenseNumber(licenseNumber);	
-			model.addAttribute("pilot", archive);
-			model.addAttribute("flightList", archive.getPilotFlight());
-			return "view-pilot";
-		} catch (NullPointerException e) {
-			return "error";
-		}
+	public String updatePilotSubmit(@RequestParam("licenseNumber") String licenseNumber, @RequestParam("newName") String newName, @RequestParam("newFlyHour") int newFlyHour, Model model) {
+		PilotModel archive = pilotService.getPilotDetailByLicenseNumber(licenseNumber);	
+		archive.setName(newName);
+		archive.setFlyHour(newFlyHour);
+		pilotService.savePilot(archive);
+		return "update";
 	}
 	
 	@RequestMapping(value = "/pilot/update/{licenseNumber}", method = RequestMethod.GET)

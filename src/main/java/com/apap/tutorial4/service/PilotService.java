@@ -12,4 +12,5 @@ public interface PilotService {
 	List<PilotModel> getPilotList();
 	void addPilot(PilotModel pilot);
 	void deletePilot(long id);
+	void savePilot(PilotModel pilot);
 }

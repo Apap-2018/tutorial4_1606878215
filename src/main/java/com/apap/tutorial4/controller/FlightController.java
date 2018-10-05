@@ -4,6 +4,7 @@ import com.apap.tutorial4.model.PilotModel;
 import com.apap.tutorial4.service.FlightService;
 import com.apap.tutorial4.service.PilotService;
 
+import java.sql.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -65,6 +66,24 @@ public class FlightController {
 	private String add(@PathVariable(value = "id") long id, Model model) {
 		flightService.deleteFlight(id);
 		return "delete";
+	}
+	
+	@RequestMapping("/flight/update")
+	public String updatePilotSubmit(@RequestParam("newFlightNumber") String newFlightNumber, @RequestParam("newOrigin") String newOrigin, 
+			@RequestParam("newDestination") String newDestination, @RequestParam("newTime") Date newTime, Model model) {
+		FlightModel archive = flightService.getFlightDetailByFlightNumber(newFlightNumber);
+		archive.setFlightNumber(newFlightNumber);
+		archive.setOrigin(newOrigin);
+		archive.setDestination(newDestination);
+		archive.setTime(newTime);
+		flightService.saveFlight(archive);
+		return "update";
+	}
+	
+	@RequestMapping(value = "/flight/update/{flightNumber}", method = RequestMethod.GET)
+	private String updatePilot(@PathVariable(value = "flightNumber") String flightNumber, Model model) {
+		model.addAttribute("flightNumber", flightNumber);
+		return "updateFlight";
 	}
 	
 }

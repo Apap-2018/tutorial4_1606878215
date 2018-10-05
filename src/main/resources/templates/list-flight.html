@@ -20,13 +20,13 @@
           		<th>Operation</th>
 	        </tr>
 	        <tr th:each="flight : ${flightList}">
-	            <td th:text="${flight.id}"></td>
+	            <td th:text="${flight.flightNumber}"></td>
 	            <td th:text="${flight.origin}"></td>
 	            <td th:text="${flight.destination}"></td>
 	            <td th:text="${#dates.format(flight.time, 'dd-MM-yyyy')}"></td>
 	            <td style="vertical-align: middle;">
 	            	<a th:href="@{/flight/delete/{id}(id=${flight.id})}" class="btn btn-danger" style="margin-right: 5px;">Delete</a>
-	            	<a th:href="@{/}" class="btn btn-success">Update</a>
+	            	<a th:href="@{/flight/update/{flightNumber}(flightNumber=${flight.flightNumber})}" class="btn btn-success">Update</a>
 	            </td>
 	        </tr>
 	    </table>
